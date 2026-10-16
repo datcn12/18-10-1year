@@ -1,0 +1,11 @@
+Gửi em bé của cưc,
+
+TODO: Đây là thư mẫu để thử giao diện. Cưc thay cả file này bằng thư thật nha.
+
+Dòng đầu tiên là lời chào, dòng cuối cùng là chữ ký, hai dòng này được viết bằng nét chữ tay.
+Xuống dòng một lần thì vẫn giữ nguyên như vầy.
+
+Một dòng trống là sang đoạn mới. Đoạn đầu tiên hiện ra như đang được viết, các đoạn sau hiện dần từng đoạn khi em bé kéo xuống.
+
+Thương em bé nhiều nhiều,
+cưc

@@ -1,0 +1,5 @@
+.DS_Store
+/CLAUDE.md
+# Full-size originals stay local; only the converted copies in assets/photos are published
+/photos/
+assets/photos/.originals/
