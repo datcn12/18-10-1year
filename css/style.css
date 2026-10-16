@@ -326,19 +326,17 @@ button {
 
 /* Music pill */
 
+/* Bottom-left, mirroring the back-to-top button on the right */
 .music {
   position: fixed;
   z-index: 30;
-  left: 0;
-  right: 0;
+  left: calc(var(--side-l) - 4px);
   bottom: calc(var(--safe-bottom) + 14px);
   display: flex;
   align-items: center;
   gap: 10px;
-  width: max-content;
-  max-width: calc(100% - 32px);
+  max-width: calc(100% - 96px);
   height: 44px;
-  margin: 0 auto;
   padding: 0 18px 0 15px;
   border: 1px solid rgb(255 255 255 / .75);
   border-radius: 999px;
@@ -994,9 +992,11 @@ html.is-open .hero-stamp { animation: fade 1.4s var(--ease) 1s both; }
   background: linear-gradient(180deg, var(--cream), var(--blush));
 }
 
+/* --ratio is the photo's own width/height (set in finale.js); the height stays within ~62% of the screen */
 .scratch {
   position: relative;
-  width: min(84vw, 340px);
+  width: min(84vw, 340px, calc(62vh * var(--ratio, .8) + 24px));
+  width: min(84vw, 340px, calc(62svh * var(--ratio, .8) + 24px));
   margin: 28px auto 0;
   padding: 12px 12px 0;
   border-radius: 6px;
@@ -1011,7 +1011,7 @@ html.is-open .hero-stamp { animation: fade 1.4s var(--ease) 1s both; }
 }
 
 .scratch-photo {
-  aspect-ratio: 4 / 5;
+  aspect-ratio: var(--ratio, 4 / 5);
   border-radius: 3px;
 }
 

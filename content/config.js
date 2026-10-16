@@ -11,7 +11,7 @@ export default {
 
   reveal: { line: "Chờ chút nha..." },
 
-  music: { src: "assets/music/bg.mp3", title: "Chờ chút", artist: "CONGB" },
+  music: { src: "assets/music/bg.mp3", title: "Chờ chút..." }, // song: "Chờ chút" by CONGB
 
   hero: {
     src: "assets/photos/hero.jpg", // like_most.jpg
@@ -68,12 +68,14 @@ export default {
     { src: "assets/photos/gallery/13.jpg", caption: "TODO: ôm một cái", focus: "50% 70%" }, // IMG_0136
     { src: "assets/photos/gallery/14.jpg", caption: "TODO: thơm má em bé", focus: "38% 50%" }, // IMG_0887
     { src: "assets/photos/gallery/15.jpg", caption: "TODO: chạy xe vòng hồ", focus: "12% 50%" }, // IMG_1317
+    { src: "assets/photos/gallery/19.jpg", caption: "TODO: dạo bước ở Huế", focus: "50% 85%" }, // 962A1624
     { src: "assets/photos/gallery/16.jpg", caption: "TODO: trái tim to đùng", focus: "50% 50%" }, // IMG_5661
     { src: "assets/photos/gallery/17.jpg", caption: "TODO: đi chơi cuối tuần", focus: "68% 45%" }, // IMG_5939
     { src: "assets/photos/gallery/18.jpg", caption: "TODO: soi gương chụp hình", focus: "43% 50%" }, // IMG_0691
   ],
 
-  final: { src: "assets/photos/final.jpg", focus: "50% 85%", line: "TODO: câu cuối cưc muốn nói với em bé" }, // 962A1624
+  // The scratch card takes this photo's own shape, so a tall photo strip shows uncropped.
+  final: { src: "assets/photos/final.jpg", line: "TODO: câu cuối cưc muốn nói với em bé" }, // final.JPEG
 
   message: "assets/message/message.txt",
 };

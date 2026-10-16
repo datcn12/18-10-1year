@@ -1,4 +1,4 @@
-export function initMusic({ src, title, artist }, pill) {
+export function initMusic({ src, title }, pill) {
   const audio = new Audio();
   audio.loop = true;
   audio.preload = "none";
@@ -6,7 +6,7 @@ export function initMusic({ src, title, artist }, pill) {
   let missing = false;
   let resumeOnReturn = false;
 
-  pill.querySelector(".music-label").textContent = `${title} - ${artist}`;
+  pill.querySelector(".music-label").textContent = title;
 
   const sync = () => {
     const playing = !audio.paused;

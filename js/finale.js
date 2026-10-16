@@ -12,7 +12,14 @@ export function initFinale(section, { src, focus, alt, cover }, { photo, burst }
   let last = null;
   let checkedAt = 0;
 
-  photo(section.querySelector(".scratch-photo"), { src, focus, alt });
+  const frame = section.querySelector(".scratch-photo");
+  photo(frame, { src, focus, alt });
+  const img = frame.querySelector("img");
+  const loaded = new Promise((resolve) => {
+    if (!img || img.complete) return resolve();
+    img.addEventListener("load", resolve, { once: true });
+    img.addEventListener("error", resolve, { once: true });
+  });
 
   // "iu" gets one burst of hearts, "iuuuuu" three bigger waves fanning out from the button.
   for (const answer of ask.querySelectorAll("[data-answer]")) {
@@ -25,15 +32,20 @@ export function initFinale(section, { src, focus, alt, cover }, { photo, burst }
     });
   }
 
-  // The card needs layout to size the canvas, so paint the cover just before it scrolls into view.
+  // The card needs its final size before the cover is painted, so start loading the photo
+  // a little before it scrolls into view and paint once it's there.
   const observer = new IntersectionObserver(([entry]) => {
     if (!entry.isIntersecting) return;
     observer.disconnect();
+    if (img) img.loading = "eager";
     paint();
-  }, { rootMargin: "400px 0px" });
+  }, { rootMargin: "600px 0px" });
   observer.observe(card);
 
   async function paint() {
+    await loaded;
+    // The card takes the photo's own shape, so nothing gets cropped (e.g. a tall photo strip).
+    if (img?.naturalWidth) card.style.setProperty("--ratio", img.naturalWidth / img.naturalHeight);
     await document.fonts.load('300 32px "Playwrite VN"').catch(() => {});
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const { width, height } = card.getBoundingClientRect();

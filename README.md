@@ -46,8 +46,11 @@ in the browser console.
 Open http://localhost:8000. Add `?dev` to skip the lock screen while working (localhost only).
 Phone on the same Wi-Fi: `python3 -m http.server 8000 --bind 0.0.0.0`, then `http://<mac-ip>:8000`.
 
-Python's server sometimes drops a request when many arrive at once. If a photo shows its pink
-placeholder although the file exists, reload.
+The macOS Python server sometimes drops files when many are requested at once (a blank page, or a pink
+placeholder although the photo exists). Reloading fixes it; this variant (same Python, bigger queue,
+keep-alive, also reachable from the phone) avoids it:
+
+    python3 -c "import http.server as s; s.ThreadingHTTPServer.request_queue_size = 64; s.test(s.SimpleHTTPRequestHandler, s.ThreadingHTTPServer, 'HTTP/1.1', 8000, '0.0.0.0')"
 
 ## Deploy
 
