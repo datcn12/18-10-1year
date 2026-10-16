@@ -187,7 +187,13 @@
           <p class="scratch-line" data-text="final.line"></p>
           <canvas class="scratch-cover" tabindex="0" role="button" aria-label="Cào để xem"></canvas>
         </div>
-        <button class="replay" type="button" hidden>Xem lại từ đầu</button>
+        <div class="ask" hidden>
+          <p class="ask-question" data-text="sections.final.question"></p>
+          <div class="ask-answers">
+            <button class="ask-answer" type="button" data-answer="little" data-text="sections.final.answers.little"></button>
+            <button class="ask-answer ask-answer--lots" type="button" data-answer="lots" data-text="sections.final.answers.lots"></button>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -195,6 +201,10 @@
   <button class="music" type="button" aria-pressed="false" hidden>
     <span class="music-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
     <span class="music-label"></span>
+  </button>
+
+  <button class="round-btn to-top" type="button" aria-label="Lên đầu trang">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5.5M6 11.5l6-6 6 6"/></svg>
   </button>
 
   <dialog class="lightbox" aria-label="Ảnh">

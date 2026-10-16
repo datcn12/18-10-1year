@@ -1,14 +1,14 @@
 const TAU = Math.PI * 2;
 const SPRITE = 64;
+const MAX_PARTICLES = 360; // keeps repeated bursts cheap on phones
 const rand = (min, max) => min + Math.random() * (max - min);
 const pick = (list) => list[Math.floor(Math.random() * list.length)];
 
 const PETAL = "M0 -10C5.2 -6 6.6 2 4.6 6.4C3 9.6 -3 9.6 -4.6 6.4C-6.6 2 -5.2 -6 0 -10Z";
 
-// One canvas for every particle: ambient falling petals, the card dissolving, the final burst.
-export function initPetals(canvas, { enabled }) {
-  if (!enabled) return { ambient() {}, scatter() {}, burst() {} };
-
+// One canvas for every particle: ambient falling petals, the card dissolving, the bursts.
+// With reduced motion nothing flies: ambient petals and the dissolve are off, bursts just fade in place.
+export function initPetals(canvas, { calm }) {
   const ctx = canvas.getContext("2d");
   const shape = (id) => document.getElementById(id).getAttribute("d");
   const sprites = {
@@ -139,7 +139,7 @@ export function initPetals(canvas, { enabled }) {
 
   return {
     ambient(on) {
-      if (on === ambientOn) return;
+      if (calm || on === ambientOn) return;
       ambientOn = on;
       if (!on) return;
       const missing = target - particles.filter((p) => p.kind === "fall").length;
@@ -149,6 +149,7 @@ export function initPetals(canvas, { enabled }) {
     },
 
     scatter(rect, count = 34) {
+      if (calm) return;
       const cx = rect.left + rect.width / 2;
       const cy = rect.top + rect.height / 2;
       for (let i = 0; i < count; i++) {
@@ -163,12 +164,21 @@ export function initPetals(canvas, { enabled }) {
       run();
     },
 
-    burst(x, y, count = 48) {
-      for (let i = 0; i < count; i++) {
+    // A fountain from (x, y): tulips, hearts and petals, or hearts only.
+    burst(x, y, { count = 48, hearts = false } = {}) {
+      const room = Math.min(count, MAX_PARTICLES - particles.length);
+      for (let i = 0; i < room; i++) {
+        const kind = Math.random();
+        const sprite = pick(hearts || kind < 0.45 ? sprites.hearts : kind < 0.75 ? sprites.tulips : sprites.petals);
+        if (calm) {
+          particles.push(Object.assign(
+            flying(sprite, x + rand(-110, 110), y + rand(-140, 10), 0, 0, { gravity: 0, drag: 0, ttl: rand(1.2, 1.9), size: rand(16, 28) }),
+            { rot: rand(-0.35, 0.35), vrot: 0, flip: 0, vflip: 0 },
+          ));
+          continue;
+        }
         const angle = -Math.PI / 2 + rand(-1.3, 1.3);
         const speed = rand(380, 860);
-        const kind = Math.random();
-        const sprite = pick(kind < 0.45 ? sprites.hearts : kind < 0.75 ? sprites.tulips : sprites.petals);
         particles.push(flying(sprite, x, y, Math.cos(angle) * speed, Math.sin(angle) * speed, {
           gravity: 950, drag: 1.4, ttl: rand(1.6, 2.6), size: rand(16, 30),
         }));

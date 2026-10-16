@@ -1,10 +1,11 @@
 const BRUSH = 22; // scratch radius in CSS px
 const DONE = 0.5; // share of the cover scratched off before it clears itself
+const HEARTS = { little: [16], lots: [36, 36, 36] }; // hearts per wave for each answer
 
 export function initFinale(section, { src, focus, alt, cover }, { photo, burst }) {
   const card = section.querySelector(".scratch");
   const canvas = section.querySelector(".scratch-cover");
-  const replay = section.querySelector(".replay");
+  const ask = section.querySelector(".ask");
   const ctx = canvas.getContext("2d", { willReadFrequently: true });
   let ready = false;
   let done = false;
@@ -12,7 +13,17 @@ export function initFinale(section, { src, focus, alt, cover }, { photo, burst }
   let checkedAt = 0;
 
   photo(section.querySelector(".scratch-photo"), { src, focus, alt });
-  replay.addEventListener("click", () => location.reload());
+
+  // "iu" gets one burst of hearts, "iuuuuu" three bigger waves fanning out from the button.
+  for (const answer of ask.querySelectorAll("[data-answer]")) {
+    answer.addEventListener("click", () => {
+      const box = answer.getBoundingClientRect();
+      HEARTS[answer.dataset.answer].forEach((count, wave) => {
+        const x = box.left + box.width / 2 + (wave ? (wave % 2 ? -1 : 1) * box.width * 0.6 : 0);
+        setTimeout(() => burst(x, box.top, { count, hearts: true }), wave * 160);
+      });
+    });
+  }
 
   // The card needs layout to size the canvas, so paint the cover just before it scrolls into view.
   const observer = new IntersectionObserver(([entry]) => {
@@ -144,7 +155,7 @@ export function initFinale(section, { src, focus, alt, cover }, { photo, burst }
     canvas.classList.add("is-cleared");
     const box = card.getBoundingClientRect();
     burst(box.left + box.width / 2, box.top + box.height * 0.4);
-    replay.hidden = false;
+    ask.hidden = false;
     setTimeout(() => canvas.remove(), 900);
   }
 }

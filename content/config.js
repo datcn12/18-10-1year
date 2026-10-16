@@ -3,7 +3,7 @@ export default {
   names: { me: "cưc", her: "em bé" },
 
   lock: {
-    question: "cưc gọi em bé là gì?",
+    question: "cưc gọi bé là gì?",
     hint: "viết thường hết nhó",
     // base64 so the answer is not a plaintext literal. ASCII only: make a new one with btoa("...") in the browser console.
     answer: "YW1l",
@@ -16,21 +16,28 @@ export default {
   hero: {
     src: "assets/photos/hero.jpg", // like_most.jpg
     focus: "58% 30%",
-    title: "Gửi em bé của cưc",
-    subtitle: "TODO: một câu nhỏ cưc muốn nói trước tiên",
+    title: "Gửi em bé của iu",
+    subtitle: "Nói nhỏ nè: tui iu ame lắm á",
     // Film-camera date stamp in the corner of the photo: day and month only. "" hides it.
     date: "18 10",
   },
 
   sections: {
-    story: { title: "Chuyện của mình", note: "mấy lần mà cưc nhớ hoài" },
+    story: { title: "Chuyện của mình", note: "mấy lần của đôi ta hẹ hẹ" },
     gallery: { title: "Góc ảnh linh tinh", note: "vuốt qua để xem tấm khác, chạm vào để xem to" },
     letter: {
       title: "Thư cho em bé",
       note: "chạm vào con dấu để mở",
       fallback: "Lá thư hơi ngại nên trốn mất rồi, nhưng mà cưc thương em bé nhiều lắm á.",
     },
-    final: { title: "Còn một điều nữa", note: "cào nhẹ nhẹ thôi nha", cover: "cào ở đây nè" },
+    final: {
+      title: "Còn một điều nữa",
+      note: "cào nhẹ nhẹ thôi nha",
+      cover: "cào ở đây nè",
+      // Shown once the scratch card is cleared; each answer sends hearts flying ("lots" sends many more).
+      question: "bé có iu mình hong dạ?",
+      answers: { little: "iu", lots: "iuuuuu" },
+    },
   },
 
   // Milestones in chronological order (4-6). focus = the part of the photo that stays visible when cropped.

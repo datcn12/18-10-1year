@@ -23,7 +23,7 @@ history.scrollRestoration = "manual";
 
 bindTexts();
 renderHero(); // starts downloading hero.jpg while the lock screen is up
-const petals = initPetals($(".petals"), { enabled: !calm });
+const petals = initPetals($(".petals"), { calm });
 petals.ambient(true);
 const music = initMusic(config.music, $(".music"));
 renderStory();
@@ -151,7 +151,15 @@ async function open(withReveal) {
   main.inert = false;
   scrollTo(0, 0);
   music.show();
-  new IntersectionObserver(([entry]) => petals.ambient(entry.isIntersecting), { threshold: 0.3 }).observe($(".hero"));
+
+  // Petals fall while the hero is on screen; the back-to-top button takes over once it's scrolled away.
+  const toTop = $(".to-top");
+  toTop.addEventListener("click", () => scrollTo({ top: 0 }));
+  new IntersectionObserver(([entry]) => {
+    const heroInView = entry.intersectionRatio >= 0.3;
+    petals.ambient(heroInView);
+    toTop.classList.toggle("is-shown", !heroInView);
+  }, { threshold: [0, 0.3] }).observe($(".hero"));
   setTimeout(() => {
     $(".backdrop").remove();
     $(".reveal").remove();
