@@ -35,6 +35,11 @@ photos (via `scripts/strip-gps.swift`, needs the Xcode command line tools). GitH
     ffmpeg -i in.mov -vf "scale='min(1024,iw)':-2" -c:v libx264 -crf 24 -pix_fmt yuv420p -an -map_metadata -1 -movflags +faststart assets/video/chut.mp4
     ffmpeg -i assets/video/chut.mp4 -frames:v 1 -q:v 3 assets/video/chut.jpg
 
+**Her note**: the sticky note at the very end sends what she writes to your Google Sheet (time, message).
+In the sheet: Extensions -> Apps Script, paste `scripts/note-sheet.gs`, then Deploy -> New deployment ->
+Web app (Execute as: Me, Who has access: Anyone) and put the `/exec` URL into `note.endpoint` in the config.
+After editing the script later: Deploy -> Manage deployments -> edit -> Version: New version, so the URL stays the same.
+
 **Letter**: `assets/message/message.txt`, UTF-8. First line = greeting, last line = signature,
 blank line = new paragraph, single line breaks are kept.
 

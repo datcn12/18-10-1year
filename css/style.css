@@ -1114,6 +1114,166 @@ html.is-open .hero-stamp { animation: fade 1.4s var(--ease) 1s both; }
   color: var(--cream);
 }
 
+/* The note at the very end: a sticky note with a folded corner that flies off when sent */
+
+.note {
+  max-width: 340px;
+  margin: 64px auto 0;
+}
+
+.note.is-again {
+  animation: rise .6s var(--ease) both;
+}
+
+.note-prompt {
+  margin: 0 0 26px;
+  font: 400 clamp(21px, 6vw, 26px)/1.75 var(--font-hand);
+  color: var(--rose);
+  text-wrap: pretty;
+}
+
+.note-paper {
+  position: relative;
+  padding: 30px 18px 24px;
+  background: linear-gradient(-45deg, transparent 20px, #FFE8EE 20px);
+  filter: drop-shadow(0 14px 18px rgb(58 42 48 / .16)) drop-shadow(0 2px 3px rgb(58 42 48 / .06));
+  rotate: -1.5deg;
+}
+
+/* the folded-over corner */
+.note-paper::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(-45deg, transparent 50%, #F4B9C9 50%);
+}
+
+.note-paper .tape {
+  top: -11px;
+  left: 20px;
+  width: 84px;
+  margin-left: 0;
+  rotate: -7deg;
+}
+
+.note-paper:focus-within {
+  outline: 2px dashed rgb(214 51 108 / .45);
+  outline-offset: 6px;
+}
+
+.note-text {
+  display: block;
+  width: 100%;
+  min-height: 170px;
+  margin: 0;
+  padding: 0 2px;
+  border: 0;
+  outline: none;
+  resize: none;
+  background: repeating-linear-gradient(to bottom, transparent 0 33px, rgb(214 51 108 / .2) 33px 34px) local;
+  font: 400 18px/34px var(--font-hand);
+  color: #B8285D;
+  text-align: left;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.note-text::placeholder {
+  color: rgb(214 51 108 / .42);
+}
+
+.note-trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.note-send {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 50px;
+  margin-top: 26px;
+  padding: 0 24px 0 20px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--rose);
+  box-shadow: 0 12px 24px -12px rgb(214 51 108 / .7);
+  font: 500 15px/1 var(--font-body);
+  color: var(--cream);
+  cursor: pointer;
+  transition: transform .25s var(--ease), opacity .25s var(--ease);
+}
+
+.note-send:active {
+  transform: scale(.94);
+}
+
+.note-send:disabled {
+  opacity: .7;
+}
+
+.note-send svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.note-status {
+  min-height: 1.6em;
+  margin: 12px 0 0;
+  font-size: 14px;
+  color: var(--rose);
+}
+
+.note.is-sending .note-send svg { animation: drift .8s ease-in-out infinite; }
+.note.is-shaking .note-paper { animation: shake .5s var(--ease); }
+.note.is-flying .note-paper { animation: fly-away .8s var(--ease) forwards; }
+
+.note.is-flying .note-prompt,
+.note.is-flying .note-send {
+  opacity: 0;
+  transition: opacity .3s var(--ease);
+}
+
+.note-done {
+  margin: 64px auto 0;
+  animation: rise .8s var(--ease) both;
+}
+
+.note-heart {
+  width: 46px;
+  height: 46px;
+  fill: var(--rose);
+}
+
+.note-thanks {
+  margin: 10px 0 4px;
+  font: 400 clamp(20px, 5.6vw, 24px)/1.7 var(--font-hand);
+  color: var(--rose);
+}
+
+.note-again {
+  min-height: 44px;
+  padding: 0 12px;
+  border: 0;
+  background: none;
+  font: 500 14px/1 var(--font-body);
+  color: var(--ink-soft);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
 /* Lightbox */
 
 .lightbox {
@@ -1185,6 +1345,15 @@ html.is-open .hero-stamp { animation: fade 1.4s var(--ease) 1s both; }
 
 @keyframes blink {
   50% { opacity: 0; }
+}
+
+@keyframes drift {
+  50% { transform: translate(3px, -3px); }
+}
+
+@keyframes fly-away {
+  25% { transform: translateY(8px) rotate(-3deg) scale(.97); }
+  100% { opacity: 0; transform: translate(70%, -160%) rotate(22deg) scale(.35); }
 }
 
 @keyframes fade {

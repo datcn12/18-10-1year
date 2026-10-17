@@ -80,5 +80,18 @@ export default {
   // The scratch card takes this photo's own shape, so a tall photo strip shows uncropped.
   final: { src: "assets/photos/final.jpg", line: "ame iu cưc là lá la" }, // final.JPEG
 
+  // The note at the very end: what she writes lands in your Google Sheet (see scripts/note-sheet.gs).
+  // endpoint = the Apps Script "Web app" URL ending in /exec; "" hides the note.
+  note: {
+    endpoint: "https://script.google.com/macros/s/AKfycbxowxFiF_a4gQ4nKCu04X2fVdaihJZKtYzduaPMG8kS_g6sKWmNWMRR-hIkgN-RwEg/exec",
+    prompt: "bé có muốn nhắn nhủ gì tui",
+    placeholder: "viết vào đây nè...",
+    send: "gửi cho cưc",
+    sending: "đang bay tới cưc...",
+    sent: "cưc nhận được rồi nha, iuu",
+    again: "viết thêm",
+    failed: "ui mạng hơi lag, bé gửi lại thử ik",
+  },
+
   message: "assets/message/message.txt",
 };
