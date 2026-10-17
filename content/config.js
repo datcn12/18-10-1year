@@ -84,7 +84,7 @@ export default {
   // endpoint = the Apps Script "Web app" URL ending in /exec; "" hides the note.
   note: {
     endpoint: "https://script.google.com/macros/s/AKfycbxowxFiF_a4gQ4nKCu04X2fVdaihJZKtYzduaPMG8kS_g6sKWmNWMRR-hIkgN-RwEg/exec",
-    prompt: "và bé có muốn nhắn nhủ gì tui hongggg",
+    prompt: "bé có muốn nhắn nhủ gì tui hong",
     placeholder: "viết vào đây nè...",
     send: "gửi cho cưc",
     sending: "đang bay tới cưc...",

@@ -1114,11 +1114,32 @@ html.is-open .hero-stamp { animation: fade 1.4s var(--ease) 1s both; }
   color: var(--cream);
 }
 
-/* The note at the very end: a sticky note with a folded corner that flies off when sent */
+/* Closing section: her note. A soft pink with a scalloped top edge, so it reads as its own part */
 
-.note {
+.reply {
+  --reply-top: #F9C6D3;
+  padding-bottom: calc(var(--safe-bottom) + 120px);
+  background: linear-gradient(180deg, var(--reply-top) 0%, #F6B2C4 55%, var(--tulip) 100%);
+  color: var(--ink);
+  animation: rise 1s var(--ease) .9s both;
+}
+
+/* the scalloped edge, like lace or the rim of a stamp */
+.reply::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 0;
+  right: 0;
+  height: 15px;
+  background: radial-gradient(circle at 12px 15px, var(--reply-top) 11.5px, transparent 12px) 0 0 / 24px 15px repeat-x;
+}
+
+.note,
+.note-done {
   max-width: 340px;
-  margin: 64px auto 0;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .note.is-again {
@@ -1126,17 +1147,18 @@ html.is-open .hero-stamp { animation: fade 1.4s var(--ease) 1s both; }
 }
 
 .note-prompt {
-  margin: 0 0 26px;
-  font: 400 clamp(21px, 6vw, 26px)/1.75 var(--font-hand);
+  margin: 0 0 32px;
+  font: 300 clamp(28px, 8vw, 38px)/1.5 var(--font-hand);
   color: var(--rose);
   text-wrap: pretty;
 }
 
+/* a sticky note with a folded corner that flies off when sent */
 .note-paper {
   position: relative;
   padding: 30px 18px 24px;
-  background: linear-gradient(-45deg, transparent 20px, #FFE8EE 20px);
-  filter: drop-shadow(0 14px 18px rgb(58 42 48 / .16)) drop-shadow(0 2px 3px rgb(58 42 48 / .06));
+  background: linear-gradient(-45deg, transparent 20px, var(--paper) 20px);
+  filter: drop-shadow(0 16px 20px rgb(150 40 80 / .25)) drop-shadow(0 2px 3px rgb(150 40 80 / .15));
   rotate: -1.5deg;
 }
 
@@ -1148,7 +1170,7 @@ html.is-open .hero-stamp { animation: fade 1.4s var(--ease) 1s both; }
   bottom: 0;
   width: 28px;
   height: 28px;
-  background: linear-gradient(-45deg, transparent 50%, #F4B9C9 50%);
+  background: linear-gradient(-45deg, transparent 50%, #F2D3DB 50%);
 }
 
 .note-paper .tape {
@@ -1160,7 +1182,7 @@ html.is-open .hero-stamp { animation: fade 1.4s var(--ease) 1s both; }
 }
 
 .note-paper:focus-within {
-  outline: 2px dashed rgb(214 51 108 / .45);
+  outline: 2px dashed rgb(214 51 108 / .5);
   outline-offset: 6px;
 }
 
@@ -1203,7 +1225,7 @@ html.is-open .hero-stamp { animation: fade 1.4s var(--ease) 1s both; }
   border: 0;
   border-radius: 999px;
   background: var(--rose);
-  box-shadow: 0 12px 24px -12px rgb(214 51 108 / .7);
+  box-shadow: 0 14px 26px -14px rgb(150 30 70 / .6);
   font: 500 15px/1 var(--font-body);
   color: var(--cream);
   cursor: pointer;
@@ -1232,7 +1254,7 @@ html.is-open .hero-stamp { animation: fade 1.4s var(--ease) 1s both; }
   min-height: 1.6em;
   margin: 12px 0 0;
   font-size: 14px;
-  color: var(--rose);
+  color: #A8224F;
 }
 
 .note.is-sending .note-send svg { animation: drift .8s ease-in-out infinite; }
@@ -1246,7 +1268,6 @@ html.is-open .hero-stamp { animation: fade 1.4s var(--ease) 1s both; }
 }
 
 .note-done {
-  margin: 64px auto 0;
   animation: rise .8s var(--ease) both;
 }
 

@@ -2,7 +2,7 @@ const BRUSH = 22; // scratch radius in CSS px
 const DONE = 0.5; // share of the cover scratched off before it clears itself
 const HEARTS = { little: [16], lots: [36, 36, 36] }; // hearts per wave for each answer
 
-export function initFinale(section, { src, focus, alt, cover }, { photo, burst }) {
+export function initFinale(section, { src, focus, alt, cover }, { photo, burst, onFinish }) {
   const card = section.querySelector(".scratch");
   const canvas = section.querySelector(".scratch-cover");
   const ask = section.querySelector(".ask");
@@ -168,6 +168,7 @@ export function initFinale(section, { src, focus, alt, cover }, { photo, burst }
     const box = card.getBoundingClientRect();
     burst(box.left + box.width / 2, box.top + box.height * 0.4);
     ask.hidden = false;
+    onFinish?.();
     setTimeout(() => canvas.remove(), 900);
   }
 }

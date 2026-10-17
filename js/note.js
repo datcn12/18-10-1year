@@ -1,16 +1,16 @@
 const FLY_MS = 800;
 
-// The note at the very end: what she writes lands as a row (time, message) in your Google Sheet,
-// through the Apps Script web app in scripts/note-sheet.gs.
-export function initNote(form, { endpoint, placeholder, sending, failed } = {}, { burst, calm }) {
-  if (!endpoint) return;
+// The closing section: what she writes lands as a row (time, message) in your Google Sheet,
+// through the Apps Script web app in scripts/note-sheet.gs. show() reveals it once the scratch card is done.
+export function initNote(section, { endpoint, placeholder, sending, failed } = {}, { burst, calm }) {
+  if (!endpoint) return { show() {} };
+  const form = section.querySelector(".note");
   const text = form.querySelector(".note-text");
   const trap = form.querySelector(".note-trap");
   const send = form.querySelector(".note-send");
   const status = form.querySelector(".note-status");
-  const done = form.parentElement.querySelector(".note-done");
+  const done = section.querySelector(".note-done");
   text.placeholder = placeholder ?? "";
-  form.hidden = false;
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -52,4 +52,10 @@ export function initNote(form, { endpoint, placeholder, sending, failed } = {}, 
     form.hidden = false;
     text.focus();
   });
+
+  return {
+    show() {
+      section.hidden = false;
+    },
+  };
 }

@@ -200,24 +200,29 @@
             <button class="ask-answer" type="button" data-answer="little" data-text="sections.final.answers.little"></button>
             <button class="ask-answer ask-answer--lots" type="button" data-answer="lots" data-text="sections.final.answers.lots"></button>
           </div>
-          <form class="note" hidden novalidate>
-            <p class="note-prompt" id="note-prompt" data-text="note.prompt"></p>
-            <div class="note-paper">
-              <span class="tape" aria-hidden="true"></span>
-              <textarea class="note-text" name="message" rows="5" maxlength="1000" aria-labelledby="note-prompt"></textarea>
-              <input class="note-trap" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-            </div>
-            <button class="note-send" type="submit">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.2L21 3l-6.6 18-3.3-7.2L3 11.2zM11.1 13.8L21 3"/></svg>
-              <span data-text="note.send"></span>
-            </button>
-            <p class="note-status" aria-live="polite"></p>
-          </form>
-          <div class="note-done" hidden>
-            <svg class="note-heart" viewBox="0 0 32 32" aria-hidden="true"><use href="#heart"/></svg>
-            <p class="note-thanks" data-text="note.sent"></p>
-            <button class="note-again" type="button" data-text="note.again"></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reply" id="reply" hidden>
+      <div class="section-inner">
+        <form class="note" novalidate>
+          <h2 class="note-prompt" id="note-prompt" data-text="note.prompt"></h2>
+          <div class="note-paper">
+            <span class="tape" aria-hidden="true"></span>
+            <textarea class="note-text" name="message" rows="5" maxlength="1000" aria-labelledby="note-prompt"></textarea>
+            <input class="note-trap" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
           </div>
+          <button class="note-send" type="submit">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.2L21 3l-6.6 18-3.3-7.2L3 11.2zM11.1 13.8L21 3"/></svg>
+            <span data-text="note.send"></span>
+          </button>
+          <p class="note-status" aria-live="polite"></p>
+        </form>
+        <div class="note-done" hidden>
+          <svg class="note-heart" viewBox="0 0 32 32" aria-hidden="true"><use href="#heart"/></svg>
+          <p class="note-thanks" data-text="note.sent"></p>
+          <button class="note-again" type="button" data-text="note.again"></button>
         </div>
       </div>
     </section>
