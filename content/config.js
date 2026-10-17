@@ -45,8 +45,8 @@ export default {
   story: [
     { src: "assets/photos/story/01.jpg", caption: "thủy cung chao xìn", focus: "50% 40%" }, // IMG_1138
     { src: "assets/photos/story/02.jpg", caption: "18.10.2025 ngày gì thế ta", focus: "50% 30%" }, // IMG_2292
-    { src: "assets/photos/story/03.jpg", caption: "ai mà xinh z?", focus: "50% 60%" }, // IMG_0258
-    { src: "assets/photos/story/04.jpg", caption: "đây là giảng sinh nè", focus: "70% 50%" }, // IMG_5986
+    { src: "assets/photos/story/03.jpg", caption: "ai mà xinh dạ?", focus: "50% 60%" }, // IMG_0258
+    { src: "assets/photos/story/04.jpg", caption: "đây là giáng sinh nè", focus: "70% 50%" }, // IMG_5986
     { src: "assets/photos/story/05.jpg", caption: "chụp ảnh cưới hảaa", focus: "50% 90%" }, // IMG_1791
     { src: "assets/photos/story/06.jpg", caption: "mới đây hoi nhớ bé òi", focus: "50% 40%" }, // IMG_1115
   ],
