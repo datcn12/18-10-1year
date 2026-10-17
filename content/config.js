@@ -74,6 +74,9 @@ export default {
     { src: "assets/photos/gallery/18.jpg", caption: "MÒAAAAAA", focus: "43% 50%" }, // IMG_0691
   ],
 
+  // A short silent clip that loops like a GIF at the end of the gallery. src: "" hides it.
+  clip: { src: "assets/video/chut.mp4", poster: "assets/video/chut.jpg", title: "Chụttttt" }, // att.EuXQ...MP4
+
   // The scratch card takes this photo's own shape, so a tall photo strip shows uncropped.
   final: { src: "assets/photos/final.jpg", line: "ame iu cưc là lá la" }, // final.JPEG
 

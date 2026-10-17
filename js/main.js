@@ -2,7 +2,7 @@ import config from "../content/config.js";
 import { initLock } from "./lock.js";
 import { initMusic } from "./music.js";
 import { initPetals, bloom, revealOnScroll, growStem } from "./effects.js";
-import { initGallery } from "./gallery.js";
+import { initGallery, initClip } from "./gallery.js";
 import { initLetter } from "./letter.js";
 import { initFinale } from "./finale.js";
 
@@ -28,6 +28,7 @@ petals.ambient(true);
 const music = initMusic(config.music, $(".music"));
 renderStory();
 present(config.gallery).then((items) => initGallery($(".gallery"), items, { photo }));
+initClip($(".clip"), config.clip, { calm });
 initLetter($(".letter"), { src: config.message, fallback: config.sections.letter.fallback }, { calm });
 initFinale($(".finale"), { ...config.final, alt: together, cover: config.sections.final.cover }, { photo, burst: petals.burst });
 

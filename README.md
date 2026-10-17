@@ -29,6 +29,12 @@ photos (via `scripts/strip-gps.swift`, needs the Xcode command line tools). GitH
 
 **Music**: `assets/music/bg.mp3`. Without it the player pill simply stays hidden.
 
+**Clip**: `assets/video/chut.mp4` loops silently, like a GIF, at the end of the gallery (`clip` in the config,
+`src: ""` hides it). From a phone video, without sound or location, plus its still frame:
+
+    ffmpeg -i in.mov -vf "scale='min(1024,iw)':-2" -c:v libx264 -crf 24 -pix_fmt yuv420p -an -map_metadata -1 -movflags +faststart assets/video/chut.mp4
+    ffmpeg -i assets/video/chut.mp4 -frames:v 1 -q:v 3 assets/video/chut.jpg
+
 **Letter**: `assets/message/message.txt`, UTF-8. First line = greeting, last line = signature,
 blank line = new paragraph, single line breaks are kept.
 

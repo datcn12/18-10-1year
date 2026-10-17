@@ -124,6 +124,40 @@ export function initGallery(section, items, { photo }) {
   layout();
 }
 
+// The clip at the end of the gallery: silent and looping like a GIF, loaded only when she gets close,
+// paused while off screen. A tap starts it when autoplay is blocked (low power mode) or motion is reduced.
+export function initClip(figure, { src, poster, title } = {}, { calm }) {
+  if (!src) return;
+  const video = figure.querySelector("video");
+  video.setAttribute("aria-label", title ?? "");
+  video.addEventListener("loadedmetadata", () => {
+    figure.style.setProperty("--ratio", video.videoWidth / video.videoHeight);
+  });
+  video.addEventListener("error", () => figure.remove());
+  figure.hidden = false;
+
+  const start = () => {
+    if (!video.getAttribute("src")) video.src = src;
+    video.play().catch(() => {});
+  };
+  figure.addEventListener("click", () => {
+    if (video.paused) start();
+  });
+
+  let near = false;
+  new IntersectionObserver(([entry]) => {
+    if (!entry.isIntersecting) {
+      video.pause();
+      return;
+    }
+    if (!near) {
+      near = true;
+      video.poster = poster ?? "";
+    }
+    if (!calm) start();
+  }, { rootMargin: "400px 0px" }).observe(figure);
+}
+
 function initLightbox(photo) {
   const dialog = document.querySelector(".lightbox");
   const frame = dialog.querySelector(".lightbox-photo");
