@@ -35,7 +35,7 @@ export default {
       note: "cào nhẹ nhẹ thôi nha",
       cover: "cào ở đây nè",
       // Shown once the scratch card is cleared; each answer sends hearts flying ("lots" sends many more).
-      question: "mà bé có iu mình hong dạ?",
+      question: "Mà bé có iu mình hong dạ?",
       answers: { little: "iu", lots: "iuuuuu" },
     },
   },
@@ -84,7 +84,7 @@ export default {
   // endpoint = the Apps Script "Web app" URL ending in /exec; "" hides the note.
   note: {
     endpoint: "https://script.google.com/macros/s/AKfycbxowxFiF_a4gQ4nKCu04X2fVdaihJZKtYzduaPMG8kS_g6sKWmNWMRR-hIkgN-RwEg/exec",
-    prompt: "bé có muốn nhắn nhủ gì tui hong",
+    prompt: "Bé có muốn nhắn nhủ gì tui hong",
     placeholder: "viết vào đây nè...",
     send: "gửi cho cưc",
     sending: "đang bay tới cưc...",
