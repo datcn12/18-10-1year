@@ -27,7 +27,7 @@ export default {
     gallery: { title: "Góc ảnh linh tinh", note: "vuốt qua để xem tấm khác, chạm vào để xem to" },
     letter: {
       title: "Thư cho em bé",
-      note: "chạm vào con dấu để mở",
+      note: "chạm vào để mở, sau đó lật thư lại nha",
       fallback: "Lá thư hơi ngại nên trốn mất rồi, nhưng mà cưc thương em bé nhiều lắm á.",
     },
     final: {
@@ -94,4 +94,8 @@ export default {
   },
 
   message: "assets/message/message.txt",
+
+  // The real bouquet (cut out from photos/flower.jpg): bursts out of the envelope when she opens the letter,
+  // stays as the letter's blurred background and waits, sharp, on its back. src: "" turns it off.
+  bouquet: { src: "assets/bouquet.webp", fallback: "assets/bouquet.png" },
 };

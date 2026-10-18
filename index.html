@@ -162,6 +162,10 @@
           <h2 class="section-title" data-text="sections.letter.title"></h2>
           <p class="section-note" data-text="sections.letter.note"></p>
         </header>
+        <picture class="bouquet" hidden>
+          <source type="image/webp">
+          <img alt="" width="700" height="1093" loading="lazy" decoding="async">
+        </picture>
         <button class="envelope" type="button" aria-label="Mở thư">
           <span class="env-back"></span>
           <span class="env-paper"></span>
@@ -175,6 +179,8 @@
           </svg>
         </button>
         <article class="letter-paper" hidden>
+          <div class="letter-backdrop" aria-hidden="true"></div>
+          <div class="letter-back" aria-hidden="true"></div>
           <button class="letter-skip" type="button">Xem hết</button>
           <p class="letter-greeting"></p>
           <div class="letter-body"></div>

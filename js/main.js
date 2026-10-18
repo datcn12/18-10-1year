@@ -30,7 +30,7 @@ const music = initMusic(config.music, $(".music"));
 renderStory();
 present(config.gallery).then((items) => initGallery($(".gallery"), items, { photo }));
 initClip($(".clip"), config.clip, { calm });
-initLetter($(".letter"), { src: config.message, fallback: config.sections.letter.fallback }, { calm });
+initLetter($(".letter"), { src: config.message, fallback: config.sections.letter.fallback, bouquet: config.bouquet }, { calm });
 const note = initNote($(".reply"), config.note, { burst: petals.burst, calm });
 initFinale($(".finale"), { ...config.final, alt: together, cover: config.sections.final.cover }, { photo, burst: petals.burst, onFinish: note.show });
 

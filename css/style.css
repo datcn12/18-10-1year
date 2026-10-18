@@ -852,6 +852,30 @@ html.is-open .hero-stamp { animation: fade 1.4s var(--ease) 1s both; }
 
 /* Letter: a sealed envelope, then the letter itself */
 
+/* The real bouquet: invisible until the letter opens, then letter.js flies it out of the envelope.
+   Laid out (not hidden), so it lazy-loads as she nears the letter. */
+.bouquet {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: block;
+  width: min(60vw, 230px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.bouquet.is-flying {
+  position: fixed;
+}
+
+.bouquet img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 18px 22px rgb(58 42 48 / .22));
+}
+
 .envelope {
   position: relative;
   display: block;
@@ -938,6 +962,7 @@ html.is-open .hero-stamp { animation: fade 1.4s var(--ease) 1s both; }
 
 .letter-paper {
   position: relative;
+  isolation: isolate;
   margin: 30px auto 0;
   padding: 56px 24px 34px;
   border-radius: 6px;
@@ -951,6 +976,80 @@ html.is-open .hero-stamp { animation: fade 1.4s var(--ease) 1s both; }
 .letter-paper.is-in {
   opacity: 1;
   transform: none;
+}
+
+/* What the bouquet settles into: a blurred copy of it as the letter's own background, under the words.
+   Sticky, so it stays in view while she scrolls through the letter. */
+.letter-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  overflow: clip;
+  border-radius: inherit;
+}
+
+.letter-backdrop-photo {
+  position: sticky;
+  top: 0;
+  display: block;
+  height: 100vh;
+  height: 100svh;
+}
+
+/* closer on the roses: blurred, the leaves below them turn olive */
+.letter-backdrop-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(12px) saturate(1.2);
+  transform: scale(1.5);
+  transform-origin: 50% 30%;
+}
+
+/* the paper shows through, so the words stay easy to read */
+.letter-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgb(255 253 249 / .55);
+}
+
+/* The back of the letter, once she turns it over: the bouquet itself, sharp, inside the paper.
+   Sticky, so it is in view wherever she is in the letter when she turns it. */
+.letter-back {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: none;
+  border-radius: inherit;
+  background: var(--paper);
+}
+
+.letter-paper.is-turned .letter-back {
+  display: block;
+}
+
+.letter-back-photo {
+  position: sticky;
+  top: 0;
+  display: block;
+  height: min(100vh, 100%);
+  height: min(100svh, 100%);
+  padding: 20px;
+}
+
+.letter-back-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 22px rgb(58 42 48 / .22));
+}
+
+.letter-paper.is-turnable {
+  cursor: pointer;
 }
 
 .letter-paper:focus {
